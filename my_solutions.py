@@ -23,7 +23,23 @@ def odd_occurences_array(A):
             odd_occurences.append(key)
     return odd_occurences
 
+def tape_equilibrium(A):
+    lhs = 0
+    rhs = 0
+    results = []
+
+    for i in range(len(A)-1):
+        lhs = sum(A[:i+1])
+        rhs = sum(A[i+1:])
+        results.append(abs(lhs-rhs))
+    return min(results)
 
 if __name__ == '__main__':
+    print('perm missing element:')
     print(perm_missing_elem([1,2,3,4,6]))
+
+    print('\nodd occurences:')
     print(odd_occurences_array([1,1,1,2,2,3,3,3,3,4]))
+
+    print('\ntape equilibrium:')
+    print(tape_equilibrium([3,1,2,4,3]))
