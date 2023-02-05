@@ -1,4 +1,7 @@
 def perm_missing_elem(A):
+    '''
+    returns the missing element in an array
+    '''
     if A:
         a_sorted = sorted(A)
         for i in range(len(a_sorted)):
@@ -9,6 +12,9 @@ def perm_missing_elem(A):
         return 1
 
 def odd_occurences_array(A):
+    '''
+    returns the odd occurences in an array
+    '''
     element_freq = dict()
     for elem in A:
         if elem in element_freq.keys():
@@ -24,6 +30,10 @@ def odd_occurences_array(A):
     return odd_occurences
 
 def tape_equilibrium(A):
+    '''
+    returns the minimum sum of adjacent
+    numbers in an array
+    '''
     lhs = 0
     rhs = 0
     results = []
@@ -34,6 +44,42 @@ def tape_equilibrium(A):
         results.append(abs(lhs-rhs))
     return min(results)
 
+def perm_check(A): #todo: submit on codility for score
+    '''
+    returns 1 if the input array is a permutation.
+    (sequence of unique integers from 1-N) Else 0
+    '''
+    if A:
+        a_sorted = sorted(A)
+        for i in range(len(a_sorted)):
+            if a_sorted[i] != i+1:
+                return 0
+        return 1
+
+def max_counter(A, N): #todo: submit on codility for score
+    '''
+    count occurences in an array according to the max
+    counter method, N being the max counter
+    '''
+    counts = {}
+    for i in range(len(A)-1):
+        counts.update({i+1:0})
+
+    for i in range(len(A)):
+        if A[i] <= N:
+            freq = counts.get(A[i])
+            counts.update({A[i]:freq+1})
+        elif A[i] > N:
+            max_c = max(list(counts.values()))
+            counts = {x:max_c for x in counts}
+    return counts
+
+def missing_int(A):
+    '''
+    returns the smallest positive integer that does not occur
+    in a given sequence.
+    '''
+
 if __name__ == '__main__':
     print('perm missing element:')
     print(perm_missing_elem([1,2,3,4,6]))
@@ -43,3 +89,12 @@ if __name__ == '__main__':
 
     print('\ntape equilibrium:')
     print(tape_equilibrium([3,1,2,4,3]))
+
+    print('\nperm check:')
+    print(perm_check([3,1,2,4,3]))
+
+    print('\nmax counter:')
+    print(max_counter([3,4,4,6,1,4,4],5))
+
+    print('\nmissing int:')
+    print(missing_int())
