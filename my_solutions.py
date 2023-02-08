@@ -29,20 +29,40 @@ def odd_occurences_array(A):
             odd_occurences.append(key)
     return odd_occurences
 
-def tape_equilibrium(A): #todo: revisit for max marks
+def tape_equilibrium(A):
     '''
     returns the minimum sum of adjacent
     numbers in an array
     '''
-    lhs = 0
-    rhs = 0
-    results = []
+    results = [0] * (len(A) -1)
 
+    # inefficent solution O(n*n): but very succint
+    # lhs = 0
+    # rhs = 0
+    # for i in range(len(A)-1):
+    #     lhs = sum(A[:i+1])
+    #     rhs = sum(A[i+1:])
+    #     results.append(abs(lhs-rhs))
+    # return min(results)
+
+    # efficient algorithm
+    lhs_sums =[0] * len(A)
+    rhs_sums =[0] * len(A)
+    sum_r = 0
+    sum_l = 0
     for i in range(len(A)-1):
-        lhs = sum(A[:i+1])
-        rhs = sum(A[i+1:])
-        results.append(abs(lhs-rhs))
-    return min(results)
+        sum_l = sum_l + A[i]
+        lhs_sums[i] = sum_l
+        sum_r = sum_r + A[len(A)-1-i]
+        rhs_sums[len(rhs_sums)-1-i] = sum_r
+
+    del(lhs_sums[-1])
+    del(rhs_sums[0])
+
+    for i in range(len(lhs_sums)):
+        sum = abs(rhs_sums[i] - lhs_sums[i])
+        results[i] = sum
+    return results
 
 def perm_check(A):
     '''
@@ -56,7 +76,7 @@ def perm_check(A):
                 return 0
         return 1
 
-def max_counter(A, N): #todo: revisit for max marks
+def max_counter(A, N): #todo: improve performance
     '''
     count occurences in an array according to the max
     counter method, N being the max counter
@@ -84,15 +104,23 @@ def missing_int(A): #todo: revisit for max marks
     in a given sequence.
     '''
     a_sorted = sorted(set(A))
-    if a_sorted[-1] <= 0:
+    if len(a_sorted) < 1:
         return 1
+    elif a_sorted[-1] < 0:
+        return 1
+    elif len(a_sorted) == 1:
+        return a_sorted[0] + 1
     else:
-        for i in range(len(a_sorted)):
-            if a_sorted[i] != i+1:
-                return i+1
-        return A[-1] + 1
+        for i in range(len(a_sorted)-1):
+            # ignore negative values and zero
+            if a_sorted[i+1] <= 0:
+                continue
+            elif a_sorted[i+1] - a_sorted[i] != 1:
+                return a_sorted[i] + 1
+        return a_sorted[-1] + 1
 
 if __name__ == '__main__':
+    # todo: add more test cases for each question to account for edge cases
     print('perm missing element:')
     print(perm_missing_elem([1,2,3,4,6]))
 
@@ -109,4 +137,8 @@ if __name__ == '__main__':
     print(max_counter([3,4,4,6,1,4,4],5))
 
     print('\nmissing int:')
+    print(missing_int([-1, -3]))
     print(missing_int([1,3,6,4,1,2]))
+    print(missing_int([3,6,4,2]))
+    print(missing_int([113415135]))
+    print(missing_int([-3,-1,-2,1,2,4]))
