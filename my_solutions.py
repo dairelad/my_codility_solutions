@@ -161,6 +161,11 @@ def count_div(A, B, K):
             B -= 1
         return ((B - A) // K) + 1
 
+def genomic_range_query(S, P, Q):
+    '''
+     Find the minimal nucleotide from a range of sequence DNA.
+     '''
+
 if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
     print('perm missing element:')
@@ -191,4 +196,7 @@ if __name__ == '__main__':
     print(passing_cars([0,1,1,1,1]))
 
     print('\ncount div:')
-    print(passing_cars(6,11,2))
+    print(count_div(6,11,2))
+
+    print('\ngenomic range query:')
+    print(genomic_range_query(6,11,2))

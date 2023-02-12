@@ -10,3 +10,4 @@ My solutions to the Codility lessons at https://app.codility.com/programmers/les
 6. https://app.codility.com/programmers/lessons/4-counting_elements/missing_integer/
 7. https://app.codility.com/programmers/lessons/5-prefix_sums/passing_cars/
 8. https://app.codility.com/programmers/lessons/5-prefix_sums/count_div/
+9. https://app.codility.com/programmers/lessons/5-prefix_sums/genomic_range_query/
