@@ -37,8 +37,7 @@ def tape_equilibrium(A):
     results = [0] * (len(A) -1)
 
     # inefficent solution O(n*n): but very succint
-    # lhs = 0
-    # rhs = 0
+    # lhs = rhs = 0
     # for i in range(len(A)-1):
     #     lhs = sum(A[:i+1])
     #     rhs = sum(A[i+1:])
@@ -76,12 +75,13 @@ def perm_check(A):
                 return 0
         return 1
 
-def max_counter(A, N): #todo: improve performance
+def max_counter(A, N): #todo: improve performance O(N*M)
     '''
     count occurences in an array according to the max
     counter method, N being the max counter
     '''
     counts = {}
+    max_c = 0
     for i in range(N):
         counts.update({i+1:0})
 
@@ -98,7 +98,7 @@ def max_counter(A, N): #todo: improve performance
         result.append(value)
     return result
 
-def missing_int(A): #todo: revisit for max marks
+def missing_int(A): #todo: improve correctness
     '''
     returns the smallest positive integer that does not occur
     in a given sequence.
@@ -118,6 +118,29 @@ def missing_int(A): #todo: revisit for max marks
             elif a_sorted[i+1] - a_sorted[i] != 1:
                 return a_sorted[i] + 1
         return a_sorted[-1] + 1
+
+def passing_cars(A): #todo: improve performance O(N**2)
+    '''
+    count the number of passing cars on the road.
+    '''
+    cars_passing = 0
+    for i in range(len(A)):
+        count = 0
+        if A[i] == 0:
+            for x in range(len(A)-1):
+                x = i + x + 1 # start counting from the next car onwards
+                if x < len(A):
+                    if A[x] == 1:
+                        count += 1
+                else:
+                    break
+            cars_passing += count
+    return cars_passing
+
+def count_div(A):
+    '''
+    compute number of integers divisible by k in range [a..b].
+    '''
 
 if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
@@ -142,3 +165,11 @@ if __name__ == '__main__':
     print(missing_int([3,6,4,2]))
     print(missing_int([113415135]))
     print(missing_int([-3,-1,-2,1,2,4]))
+
+    print('\npassing cars:')
+    print(passing_cars([0,1,0,1,1]))
+    print(passing_cars([0]))
+    print(passing_cars([0,1,1,1,1]))
+
+    print('\ncount div:')
+    print(passing_cars([0,1,0,1,1]))
