@@ -137,10 +137,29 @@ def passing_cars(A): #todo: improve performance O(N**2)
             cars_passing += count
     return cars_passing
 
-def count_div(A):
+def count_div(A, B, K):
     '''
     compute number of integers divisible by k in range [a..b].
     '''
+    # brute force:
+    # count = 0
+    # if A == 0 and B == 0:
+    #     return 1
+    # else:
+    #     for i in range(A,B):
+    #         if i % K == 0:
+    #             count += 1
+    #     return count
+
+    # efficient solution:
+    if A == 0 and B == 0:
+        return 1
+    else:
+        while A % K != 0:
+            A += 1
+        while B % K != 0:
+            B -= 1
+        return ((B - A) // K) + 1
 
 if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
@@ -172,4 +191,4 @@ if __name__ == '__main__':
     print(passing_cars([0,1,1,1,1]))
 
     print('\ncount div:')
-    print(passing_cars([0,1,0,1,1]))
+    print(passing_cars(6,11,2))
