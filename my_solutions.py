@@ -1,3 +1,24 @@
+'''This file contains my solutions to the lessons on Codility
+'''
+
+def binary_gap(N):
+    '''find longest sequence of zeros in binary representation
+        of an integer
+    '''
+    bin_N = bin(N).replace("0b", "")
+    bin_gap = 0
+    current_gap = 0
+    start_count = False
+    for i in bin_N:
+        if i == '1':
+            start_count = True
+        if i == '0' and start_count:
+            current_gap += 1
+        if i == '1' and start_count:
+            bin_gap = max(current_gap,bin_gap)
+            current_gap = 0
+    return bin_gap
+
 def perm_missing_elem(A):
     '''
     returns the missing element in an array
@@ -17,11 +38,7 @@ def odd_occurences_array(A):
     '''
     element_freq = dict()
     for elem in A:
-        if elem in element_freq.keys():
-            freq = element_freq.get(elem) + 1
-            element_freq.update({elem:freq})
-        else:
-            element_freq.update({elem:1})
+        element_freq.update({elem:element_freq.get(elem,0)+1})
 
     odd_occurences = []
     for key, value in element_freq.items():
@@ -36,7 +53,7 @@ def tape_equilibrium(A):
     '''
     results = [0] * (len(A) -1)
 
-    # inefficent solution O(n*n): but very succint
+    # inefficent solution O(n*n), but very concise:
     # lhs = rhs = 0
     # for i in range(len(A)-1):
     #     lhs = sum(A[:i+1])
@@ -141,7 +158,7 @@ def count_div(A, B, K):
     '''
     compute number of integers divisible by k in range [a..b].
     '''
-    # brute force:
+    # brute force solution:
     # count = 0
     # if A == 0 and B == 0:
     #     return 1
@@ -168,7 +185,10 @@ def genomic_range_query(S, P, Q):
 
 if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
-    print('perm missing element:')
+    print('binary gap:')
+    print(binary_gap(1041))
+
+    print('\nperm missing element:')
     print(perm_missing_elem([1,2,3,4,6]))
 
     print('\nodd occurences:')
