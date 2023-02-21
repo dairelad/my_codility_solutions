@@ -19,6 +19,24 @@ def binary_gap(N):
             current_gap = 0
     return bin_gap
 
+def cyclic_array(A, K):
+    '''
+    rotate an array to the right by a given number of steps
+    '''
+    output_array = [None] * (len(A))
+    for i in range(len(A)):
+        new_index = (i+K)%len(A)
+        output_array[new_index] = A[i]
+    return output_array
+
+def frog_jump(X,Y,D):
+    '''
+    count the minimal number of jumps from position X to Y
+    '''
+    distance = Y-X
+    jumps = distance//D + bool(distance%D)
+    return jumps
+
 def perm_missing_elem(A):
     '''
     returns the missing element in an array
@@ -79,6 +97,11 @@ def tape_equilibrium(A):
         sum = abs(rhs_sums[i] - lhs_sums[i])
         results[i] = sum
     return results
+
+def frog_river_one(X, A):
+    '''
+    find the earliest time when a frog can jump to the other side of a river.
+    '''
 
 def perm_check(A):
     '''
@@ -187,6 +210,13 @@ if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
     print('binary gap:')
     print(binary_gap(1041))
+
+    print('\ncyclic array:')
+    print(cyclic_array([3,8,9,7,6],3))
+
+    print('\nfrog jump:')
+    print(frog_jump(1,5,2))
+    print(frog_jump(0,0,2))
 
     print('\nperm missing element:')
     print(perm_missing_elem([1,2,3,4,6]))
