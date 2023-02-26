@@ -2,8 +2,9 @@
 '''
 
 def binary_gap(N):
-    '''find longest sequence of zeros in binary representation
-        of an integer
+    '''
+    find longest sequence of zeros in binary representation
+    of an integer
     '''
     bin_N = bin(N).replace("0b", "")
     bin_gap = 0
@@ -98,10 +99,21 @@ def tape_equilibrium(A):
         results[i] = sum
     return results
 
-def frog_river_one(X, A):
+def frog_river_one(X, A): #todo: improve efficiency
     '''
     find the earliest time when a frog can jump to the other side of a river.
     '''
+    time = 0
+    hops_left = X
+    leaves_fallen = []
+    for pos in A:
+        if pos not in leaves_fallen:
+            leaves_fallen.append(pos)
+            hops_left -= 1
+        if hops_left == 0:
+            return time
+        time += 1
+    return -1
 
 def perm_check(A):
     '''
@@ -226,6 +238,10 @@ if __name__ == '__main__':
 
     print('\ntape equilibrium:')
     print(tape_equilibrium([3,1,2,4,3]))
+
+    print('\nfrog river one:')
+    print(frog_river_one(5,[1,3,1,4,2,3,5,4]))
+    print(frog_river_one(5,[3]))
 
     print('\nperm check:')
     print(perm_check([3,1,2,4,3]))
