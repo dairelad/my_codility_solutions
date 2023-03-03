@@ -218,6 +218,28 @@ def genomic_range_query(S, P, Q):
      Find the minimal nucleotide from a range of sequence DNA.
      '''
 
+def triangle():
+    '''
+    Determine whether a triangle can be built from a given set of edges.
+    '''
+
+def distinct(A):
+    '''
+    Compute number of distinct values in an array.
+    '''
+    return len(set(A))
+
+def maxProductOfThree(A):
+    '''
+    Maximize A[P] * A[Q] * A[R] for any triplet (P, Q, R).
+    '''
+    N = len(A)
+    for i in range(len(a)):
+        p = i; q = i+1; r = i+2
+        triplet = bool(0 <= p < q < r < N)
+
+        #if triplet:
+
 if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
     print('binary gap:')
@@ -266,3 +288,6 @@ if __name__ == '__main__':
 
     print('\ngenomic range query:')
     print(genomic_range_query(6,11,2))
+
+    print('\ndistinct:')
+    print(distinct([2,1,1,2,3,1]))

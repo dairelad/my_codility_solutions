@@ -15,3 +15,6 @@ My solutions to the Codility lessons at https://app.codility.com/programmers/les
 11. https://app.codility.com/programmers/lessons/5-prefix_sums/passing_cars/
 12. https://app.codility.com/programmers/lessons/5-prefix_sums/count_div/
 13. https://app.codility.com/programmers/lessons/5-prefix_sums/genomic_range_query/
+14. https://app.codility.com/programmers/lessons/6-sorting/distinct/
+15. https://app.codility.com/programmers/lessons/6-sorting/max_product_of_three/
+16. https://app.codility.com/programmers/lessons/6-sorting/triangle/
