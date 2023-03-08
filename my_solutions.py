@@ -229,7 +229,7 @@ def distinct(A):
     '''
     return len(set(A))
 
-def maxProductOfThree(A):
+def maxProductOfThree(A): #todo fix this solution
     '''
     Maximize A[P] * A[Q] * A[R] for any triplet (P, Q, R).
     '''
