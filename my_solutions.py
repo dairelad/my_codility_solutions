@@ -234,11 +234,38 @@ def maxProductOfThree(A):
     Maximize A[P] * A[Q] * A[R] for any triplet (P, Q, R).
     '''
     N = len(A)
-    for i in range(len(a)):
-        p = i; q = i+1; r = i+2
-        triplet = bool(0 <= p < q < r < N)
+    max_product = 0
+    product = 0
+    for i in range(len(A)-2):
+        p = A[i]; q = A[i+1]; r = A[i+2]
+        inner_count = 0
+        outer_count = 0
+        triplet = False
+        while not triplet:
+            print(p,q,r)
+            inner_count += 1
+            if p < 0:
+                break
 
-        #if triplet:
+            if p < q:
+                outer_count += 1
+                if q < r:
+                    triplet = True
+                    product = p*q*r
+                else:
+                    if (i+2+outer_count)<N:
+                        r = A[i+2+outer_count]
+                    else:
+                        break
+            else:
+                if (i+1+inner_count)<N:
+                    q = A[i+1+inner_count]
+                else:
+                    break
+
+        max_product = max(max_product,product)
+
+    return max_product
 
 if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
@@ -291,3 +318,9 @@ if __name__ == '__main__':
 
     print('\ndistinct:')
     print(distinct([2,1,1,2,3,1]))
+
+    print('\nMax Product Of Three:')
+    print(maxProductOfThree([-3,1,2,-2,5,6]))
+
+    print('\nMax Product Of Three:')
+    print(maxProductOfThree([10,10,10]))
