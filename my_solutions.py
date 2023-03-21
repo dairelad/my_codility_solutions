@@ -232,40 +232,65 @@ def distinct(A):
 def maxProductOfThree(A): #todo fix this solution
     '''
     Maximize A[P] * A[Q] * A[R] for any triplet (P, Q, R).
+    A[P] * A[Q] * A[R] (0 ≤ P < Q < R < N)
     '''
     N = len(A)
-    max_product = 0
-    product = 0
-    for i in range(len(A)-2):
-        p = A[i]; q = A[i+1]; r = A[i+2]
-        inner_count = 0
-        outer_count = 0
-        triplet = False
-        while not triplet:
-            print(p,q,r)
-            inner_count += 1
-            if p < 0:
-                break
+    A.sort()
+    if not isValid(A, N):
+        return 0
 
-            if p < q:
-                outer_count += 1
-                if q < r:
-                    triplet = True
-                    product = p*q*r
-                else:
-                    if (i+2+outer_count)<N:
-                        r = A[i+2+outer_count]
-                    else:
-                        break
-            else:
-                if (i+1+inner_count)<N:
-                    q = A[i+1+inner_count]
-                else:
-                    break
+    max_product = A[-1] * A[-2] * A[-3]
 
-        max_product = max(max_product,product)
+    if A[0] < 0 and A[1] < 0:
+        temp = A[0] * A[1] * A[-1]
+        if temp > max_product:
+            max_product = temp
 
     return max_product
+
+def isValid(A, N):
+    if N == 0:
+        return False
+    elif N <3 or N>100000:
+        return False
+    elif A[0] < -1000 or A[-1] > 1000:
+        return False
+    else:
+        return True
+
+    # N = len(A)
+    # max_product = 0
+    # product = 0
+    # for i in range(len(A)-2):
+    #     p = A[i]; q = A[i+1]; r = A[i+2]
+    #     inner_count = 0
+    #     outer_count = 0
+    #     triplet = False
+    #     while not triplet:
+    #         print(p,q,r)
+    #         inner_count += 1
+    #         if p < 0:
+    #             break
+
+    #         if p < q:
+    #             outer_count += 1
+    #             if q < r:
+    #                 triplet = True
+    #                 product = p*q*r
+    #             else:
+    #                 if (i+2+outer_count)<N:
+    #                     r = A[i+2+outer_count]
+    #                 else:
+    #                     break
+    #         else:
+    #             if (i+1+inner_count)<N:
+    #                 q = A[i+1+inner_count]
+    #             else:
+    #                 break
+
+    #     max_product = max(max_product,product)
+
+    # return max_product
 
 if __name__ == '__main__':
     # todo: add more test cases for each question to account for edge cases
