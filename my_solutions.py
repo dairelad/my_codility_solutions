@@ -218,10 +218,19 @@ def genomic_range_query(S, P, Q):
      Find the minimal nucleotide from a range of sequence DNA.
      '''
 
-def triangle():
+def triangle(A):
     '''
     Determine whether a triangle can be built from a given set of edges.
     '''
+    n = len(A)
+    if n < 3:
+        return 0
+    else:
+        A = sorted(A)
+        for i in range(len(A) - 2):
+            if (A[i] + A[i+1] > A[i+2]):
+                return 1
+        return 0
 
 def distinct(A):
     '''
@@ -337,6 +346,10 @@ if __name__ == '__main__':
 
     print('\ncount div:')
     print(count_div(6,11,2))
+
+    print('\ntriangle:')
+    print(triangle([10, 2, 5, 1, 8, 20]))
+    print(triangle([100, 2, 5, 1, 8, 20]))
 
     print('\ngenomic range query:')
     print(genomic_range_query(6,11,2))
